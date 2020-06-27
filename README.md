@@ -12,3 +12,4 @@ There are 5 rounds, where the player who chooses the winning option receives a p
 - paper beats rock
 - scissors beats paper
 
+Play [Here](https://wcampbell94.github.io/jan-ken-pon/)
