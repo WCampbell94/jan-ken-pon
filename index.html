@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<script>
+    function game() {
+        var round = 0;
+        var cpuScore = 0;
+        var playerScore = 0;
+        var result;
+
+        while (round < 5){
+            console.log(` Round:${round + 1}`)
+
+            const computerSelection = computerPlay();
+            const playerSelection = prompt("Rock Paper Scissors SHOOT!").toLowerCase();
+            result = playRound(playerSelection, computerSelection)
+            console.log(result)
+            // parse result string to add score
+            result.includes("Lose!") ? cpuScore++ 
+                : result.includes("Win!") ? playerScore++ 
+                : "No score change";
+            console.log(`Score: Computer:${cpuScore} Player:${playerScore}`)
+
+            //increse round
+            round ++;
+        }
+
+        if (cpuScore > playerScore) {
+            return `Computer wins! ${cpuScore} to ${playerScore}`
+        } else if (playerScore > cpuScore) {
+            return `Player wins! ${playerScore} to ${cpuScore}`
+        } else { "Draw!" }
+    }
+    
+    // Function to handle win/lose conditions
+    function playRound (playerSelection, computerSelection) {
+        
+        //Draw scenario
+        if (playerSelection == computerSelection) {
+            return "Draw";
+        }
+        // Computer wins Scenarios
+         else if (playerSelection == "rock" && computerSelection == "paper") {
+            
+            return  `You Lose! ${computerSelection} beats ${playerSelection}`
+        } else if (playerSelection == "paper" && computerSelection == "scissors") {
+            
+            return `You Lose! ${computerSelection} beats ${playerSelection}`
+        } else if (playerSelection == "scissors" && computerSelection == "rock") {
+            
+            return `You Lose! ${computerSelection} beats ${playerSelection}`
+        }
+
+        // Player wins scenarios
+        else if (playerSelection == "rock" && computerSelection == "scissors") {
+            
+            return `You Win! ${playerSelection} beats ${computerSelection} `
+        } else if (playerSelection == "paper" && computerSelection == "rock") {
+            
+            return `You Win! ${playerSelection} beats ${computerSelection}`
+        } else if (playerSelection == "scissors" && computerSelection == "paper") {
+            
+            return `You Win! ${playerSelection} beats ${computerSelection}`
+        }
+
+        //Edge case playerSelection != Rock, paper, or scissors
+        else return "Player did not enter a valid choice"
+    }
+    
+    //Computer selection function
+    const computerPlay = () => {
+        var selection = Math.floor(Math.random()*3) + 1;
+        switch(selection){
+            case 1:
+                return "rock"
+                break;
+            case 2: 
+                return "paper"
+                break;
+            case 3: 
+                return "scissors"
+                break;
+            default:
+                break;
+        }
+    }
+    
+    console.log(game())
+</script>
+
+</body>
+</html>

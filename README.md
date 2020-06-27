@@ -1,10 +1,14 @@
 # Jan-Ken-Pon
-## Also known as; the classic childhood game Rock Paper Scissors!
+## The classic childhood game also known as Rock Paper Scissors!
 
-Game is currently played in the browser console, against the computer by selecting rock, paper, or scissors
+Game is currently played in the browser console, against the computer by selecting rock, paper, or scissors.
 
 ## Rules
+There are 5 rounds, where the player who chooses the winning option receives a point.
+- No point is awarded if there is a draw, or if an invalid choice is entered by the player
 
-rock beats scissors
-paper beats rock
-scissors beats paper
+### Guide
+- rock beats scissors
+- paper beats rock
+- scissors beats paper
+
