@@ -1,141 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>
-      Rock Paper Scissors
-      <span id="hide" style="visibility: hidden;">SHOOT!</span>
-    </h1>
-    <h3 class="round">Round:</h3>
-    <button value="Rock" class="playerSelection">Rock</button>
-    <button value="Paper" class="playerSelection">Paper</button>
-    <button value="Scissors" class="playerSelection">Scissors</button>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<h1>
+			Rock Paper Scissors
+		</h1>
+		<h3 class="round"></h3>
+		<div class="btns">
+			<button value="Rock" class="playerSelection">Rock</button>
+			<button value="Paper" class="playerSelection">Paper</button>
+			<button value="Scissors" class="playerSelection">Scissors</button>
+		</div>
+		<div class="moves">
+			<div class="playerMove"></div>
+			<div class="cpuMove"></div>
+		</div>
+		<div class="moves">
+			<h4 id="pScore" class="score"></h4>
+			<h4 id="cScore" class="score"></h4>
+		</div>
 
-    <div class="playerMove"></div>
-    <div class="cpuMove"></div>
+		<div class="gameMessage">
+			<p id="startText" style="font-size: 2.2rem;">
+				Select Rock, Paper, or Scissors to begin
+			</p>
+		</div>
 
-    <h3 id="pScore" class="score">Player Score:</h3>
-    <h3 id="cScore" class="score">CPU Score:</h3>
-
-    <div class="gameMessage"></div>
-
-    <script>
-      const buttons = document.querySelectorAll('button');
-      const pScore = document.getElementById('pScore');
-      const cScore = document.getElementById('cScore');
-      const gameMessage = document.querySelector('.gameMessage');
-      const playerMove = document.querySelector('.playerMove');
-      const cpuMove = document.querySelector('.cpuMove');
-      const gameRound = document.querySelector('.round');
-      const shoot = document.getElementById('hide');
-
-      const messageText = document.createElement('p');
-      const pMove = document.createElement('p');
-      const cMove = document.createElement('p');
-      gameMessage.appendChild(messageText);
-      cpuMove.appendChild(cMove);
-      playerMove.appendChild(pMove);
-
-      var round = 0;
-      var cpuScore = 0;
-      var playerScore = 0;
-      var result;
-
-      //while (round < 5) {
-      // console.log(buttons);
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          checkRoundWinner(playRound(e.target.value));
-          shoot.style.visibility = 'visible';
-          if (playerScore == 5 || cpuScore == 5) {
-            messageText.textContent = checkWinner();
-            round = 0;
-            cpuScore = 0;
-            playerScore = 0;
-            cpuMove.removeChild(cMove);
-            playerMove.removeChild(pMove);
-          }
-        });
-      });
-
-      //}
-
-      // Function to handle win/lose conditions
-      function playRound(selection) {
-        gameRound.textContent = `Round: ${round + 1}`;
-        round++;
-        let player = selection;
-        let cpu = computerPlay();
-        pMove.textContent = `Player Chose: ${player}`;
-        cMove.textContent = `CPU Chose: ${cpu}`;
-        //Draw scenario
-        if (player == cpu) {
-          return 'Draw';
-        }
-        // Computer wins Scenarios
-        else if (player == 'Rock' && cpu == 'Paper') {
-          return `You Lose! ${cpu} beats ${player}`;
-        } else if (player == 'Paper' && cpu == 'Scissors') {
-          return `You Lose! ${cpu} beats ${player}`;
-        } else if (player == 'Scissors' && cpu == 'Rock') {
-          return `You Lose! ${cpu} beats ${player}`;
-        }
-
-        // Player wins scenarios
-        else if (player == 'Rock' && cpu == 'Scissors') {
-          return `You Win! ${player} beats ${cpu} `;
-        } else if (player == 'Paper' && cpu == 'Rock') {
-          return `You Win! ${player} beats ${cpu}`;
-        } else if (player == 'Scissors' && cpu == 'Paper') {
-          return `You Win! ${player} beats ${cpu}`;
-        }
-
-        //Edge case playerSelection != Rock, Paper, or Scissors
-        else return 'Player did not enter a valid choice';
-      }
-
-      function checkRoundWinner(result) {
-        // parse result string to add score
-        messageText.textContent = result;
-        result.includes('Lose!')
-          ? cpuScore++
-          : result.includes('Win!')
-          ? playerScore++
-          : 'No score change';
-        pScore.textContent = `Player Score: ${playerScore}`;
-        cScore.textContent = `CPU Score: ${cpuScore}`;
-      }
-
-      //Check winner based on score
-      function checkWinner() {
-        if (cpuScore > playerScore) {
-          return `Computer wins! ${cpuScore} to ${playerScore}`;
-        } else if (playerScore > cpuScore) {
-          return `Player wins! ${playerScore} to ${cpuScore}`;
-        } else 'Draw!';
-      }
-
-      //Computer selection function
-      function computerPlay() {
-        var selection = Math.floor(Math.random() * 3) + 1;
-        switch (selection) {
-          case 1:
-            return 'Rock';
-            break;
-          case 2:
-            return 'Paper';
-            break;
-          case 3:
-            return 'Scissors';
-            break;
-          default:
-            break;
-        }
-      }
-    </script>
-  </body>
+		<script src="index.js"></script>
+	</body>
 </html>
